@@ -174,6 +174,7 @@ See also / 另见：
 - [`docs/mvp-flow.md`](docs/mvp-flow.md)
 - [`docs/roadmap.md`](docs/roadmap.md)
 - [`docs/install.md`](docs/install.md)
+- [`docs/fresh-install.md`](docs/fresh-install.md)
 - [`docs/example-workspace.md`](docs/example-workspace.md)
 - [`docs/release.md`](docs/release.md)
 
@@ -208,5 +209,8 @@ Short term priorities / 短期优先事项：
 - prepare a cleaner public release / 准备更适合公开发布的版本
 
 ## License / 许可
+
+TBD
+
 
 TBD

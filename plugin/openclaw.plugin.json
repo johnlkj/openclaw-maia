@@ -3,6 +3,7 @@
   "name": "MAIA",
   "description": "Multi-Agent Multi-Account Isolation Architecture for per-user profile and memory isolation inside a single OpenClaw agent workspace. / 用于在单个 OpenClaw agent workspace 内实现按用户隔离的档案与记忆管理的多 Agent 多账号隔离架构。",
   "version": "0.1.0",
+  "skills": ["./skills"],
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

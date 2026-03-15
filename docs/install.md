@@ -33,20 +33,35 @@ Expected result / 期望结果：
 - no plugin issues are reported  
   不出现插件错误
 
+Recommended config / 推荐配置：
+
+```json
+{
+  "plugins": {
+    "allow": ["maia"],
+    "entries": {
+      "maia": {
+        "enabled": true
+      }
+    }
+  }
+}
+```
+
 ## 2. Install or package the skill / 安装或打包 skill
 
 The skill source lives at:  
 skill 源文件位于：
 
 ```text
-skill/openclaw-maia/
+plugin/skills/openclaw-maia/
 ```
 
 Package it with:  
 打包命令：
 
 ```bash
-python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py skill/openclaw-maia dist
+python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py plugin/skills/openclaw-maia dist
 ```
 
 Expected artifact / 产物：
@@ -76,3 +91,4 @@ Open a fresh direct-message session and check whether the agent:
   MAIA 当前是普通插件 + hooks，不是自定义 context engine。
 - If you recently changed the memory structure, prefer testing in a fresh session.  
   如果你刚改过记忆结构，优先在新会话中测试。
+�话中测试。

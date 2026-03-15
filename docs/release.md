@@ -7,13 +7,13 @@ Prepare MAIA for public GitHub release and easier reuse in other OpenClaw setups
 
 ## Current release model / 当前发布模型
 
-MAIA currently ships as two parts:  
-当前 MAIA 由两部分组成：
+MAIA currently ships as a plugin bundle containing:  
+当前 MAIA 以一个插件包形式提供，包含：
 
-1. a plugin under `plugin/`  
-   位于 `plugin/` 的插件
-2. a companion skill under `skill/openclaw-maia/`  
-   位于 `skill/openclaw-maia/` 的配套 skill
+1. the plugin runtime under `plugin/`  
+   位于 `plugin/` 的插件运行部分
+2. the bundled companion skill under `plugin/skills/openclaw-maia/`  
+   位于 `plugin/skills/openclaw-maia/` 的配套 skill
 
 ## Skill packaging / Skill 打包
 
