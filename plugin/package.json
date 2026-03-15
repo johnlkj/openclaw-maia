@@ -1,0 +1,15 @@
+{
+  "name": "maia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MAIA plugin scaffold for OpenClaw / OpenClaw 的 MAIA 插件骨架",
+  "type": "module",
+  "main": "src/index.js",
+  "openclaw": {
+    "extensions": ["./src/index.js"]
+  },
+  "scripts": {
+    "build": "echo 'TODO: add build step'",
+    "check": "node --check src/index.js && node --check src/paths.js && node --check src/bootstrap.js && node --check src/session.js && node --check src/prompt.js && node --check src/templates/index.js"
+  }
+}
