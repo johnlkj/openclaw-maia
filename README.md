@@ -3,8 +3,8 @@
 **MAIA = Multi-Agent Multi-Account Isolation Architecture**  
 **MAIA = 多 Agent 多账号隔离架构**
 
-MAIA is a bilingual OpenClaw project that combines a **plugin + skill** to provide isolated per-user persona and memory management inside a single agent workspace.  
-MAIA 是一个中英双语的 OpenClaw 项目，通过 **plugin + skill** 的组合，在单个 agent workspace 内实现按用户隔离的人格配置与记忆管理。
+MAIA is a bilingual OpenClaw project for OpenClaw agents that combines a **plugin + bundled skill** to provide isolated per-user persona and memory management inside a single agent workspace.  
+MAIA 是一个面向 OpenClaw agent 的中英双语项目，通过 **plugin + 内置 skill** 的组合，在单个 agent workspace 内实现按用户隔离的人格配置与记忆管理。
 
 ## Why MAIA? / 为什么需要 MAIA？
 
@@ -52,9 +52,9 @@ Current plugin MVP responsibilities / 当前插件 MVP 职责：
 - inject MAIA read/write guidance into prompt construction  
   在 prompt 构建阶段注入 MAIA 读写规则
 
-### 2. Skill / 技能
-The companion skill teaches the agent how to behave on top of the MAIA structure.  
-配套 skill 负责教 agent 如何在 MAIA 结构之上正确行动。
+### 2. Bundled skill / 内置技能
+The companion skill now ships inside the plugin bundle under `plugin/skills/openclaw-maia/`.  
+配套 skill 现在直接内置在插件包中，路径为 `plugin/skills/openclaw-maia/`。
 
 Current skill responsibilities / 当前 skill 职责：
 - tell the agent what to read first  
@@ -76,6 +76,7 @@ What is already working / 已经跑通的部分：
 - hook-based MAIA prompt injection / 基于 hook 的 MAIA prompt 注入
 - per-user path resolution / 按用户路径解析
 - first-contact file bootstrap scaffold / 首次接触建档骨架
+- bundled skill discovery from the plugin / 从插件内发现配套 skill
 - real-world validation in a live OpenClaw setup / 在真实 OpenClaw 环境中的实际验证
 
 What is still evolving / 还在演进中的部分：
@@ -84,39 +85,61 @@ What is still evolving / 还在演进中的部分：
 - migration helpers for legacy shared-memory layouts / 旧共享记忆结构的迁移辅助
 - optional future upgrade to a real context engine / 未来可选升级成真正 context engine
 
+## Compatibility / 兼容性
+
+Tested with / 已测试版本：
+- OpenClaw `2026.3.13`
+- stable channel
+- plugin mode: regular plugin + `before_prompt_build` hook
+
 ## Quick start / 快速开始
 
-### Install the plugin / 安装插件
+### Fresh install from GitHub / 从 GitHub 全新安装
 
-Link the local plugin into an OpenClaw instance:  
-把本地插件链接到某个 OpenClaw 实例：
+OpenClaw plugin install currently does **not** support direct GitHub repo URLs.  
+OpenClaw 当前**不支持**直接使用 GitHub 仓库 URL 安装插件。
+
+Use this flow instead / 请改用这条流程：
 
 ```bash
-openclaw --profile <profile> plugins install --link /path/to/openclaw-maia/plugin
+git clone https://github.com/johnlkj/openclaw-maia.git
+cd openclaw-maia
+openclaw --profile <profile> plugins install --link ./plugin
 ```
 
-Then verify it loads:  
-然后验证插件已加载：
+Then verify it loads / 然后验证插件已加载：
 
 ```bash
 openclaw --profile <profile> plugins list
 openclaw --profile <profile> plugins doctor
+openclaw --profile <profile> skills list
 ```
 
-### Install the companion skill / 安装配套 skill
+### Recommended config / 推荐配置
 
-The repository currently ships the skill source under:  
-当前仓库里的 skill 源文件位于：
+To avoid auto-load warnings for non-bundled plugins, explicitly allow MAIA in your config.  
+为了避免非内置插件的 auto-load warning，建议在配置中显式允许 MAIA。
 
-```text
-skill/openclaw-maia/
+```json
+{
+  "plugins": {
+    "allow": ["maia"],
+    "entries": {
+      "maia": {
+        "enabled": true
+      }
+    }
+  }
+}
 ```
 
-To package it into a distributable `.skill` file:  
-要把它打包成可分发的 `.skill` 文件，可运行：
+### Package the bundled skill / 打包内置 skill
+
+To package the bundled skill into a distributable `.skill` file:  
+要把内置 skill 打包成可分发的 `.skill` 文件，可运行：
 
 ```bash
-python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py skill/openclaw-maia dist
+python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py plugin/skills/openclaw-maia dist
 ```
 
 Expected artifact / 产物：
@@ -125,10 +148,7 @@ Expected artifact / 产物：
 dist/openclaw-maia.skill
 ```
 
-Use it as the companion MAIA skill when packaging or distributing to another OpenClaw setup.  
-在打包或分发给其他 OpenClaw 环境时，把它作为 MAIA 的配套 skill 使用。
-
-### Validate behavior / 验证行为
+## Behavior validation / 行为验证
 
 A minimal behavior test should confirm that:  
 最小行为验证应确认：
@@ -139,6 +159,8 @@ A minimal behavior test should confirm that:
    agent 能正确说明 `people/<user-id>/...` 下的个人记忆路径
 3. one user's memory is not mixed with another user's files  
    某个用户的记忆不会和另一个用户的文件混在一起
+4. `/new` or `/reset` is used after structural memory changes  
+   在结构变更后会用 `/new` 或 `/reset` 再测试
 
 ## Example workspace layout / 示例 workspace 结构
 
@@ -168,16 +190,6 @@ workspace/
          └─ 2026-03-15.md
 ```
 
-See also / 另见：
-- [`docs/architecture.md`](docs/architecture.md)
-- [`docs/plugin-contract.md`](docs/plugin-contract.md)
-- [`docs/mvp-flow.md`](docs/mvp-flow.md)
-- [`docs/roadmap.md`](docs/roadmap.md)
-- [`docs/install.md`](docs/install.md)
-- [`docs/fresh-install.md`](docs/fresh-install.md)
-- [`docs/example-workspace.md`](docs/example-workspace.md)
-- [`docs/release.md`](docs/release.md)
-
 ## Repository layout / 仓库结构
 
 ```text
@@ -186,19 +198,36 @@ openclaw-maia/
 ├─ docs/
 │  ├─ architecture.md
 │  ├─ example-workspace.md
+│  ├─ fresh-install.md
 │  ├─ install.md
 │  ├─ mvp-flow.md
 │  ├─ plugin-contract.md
+│  ├─ release.md
+│  ├─ releases/
+│  │  └─ v0.1.0.md
 │  └─ roadmap.md
 ├─ plugin/
 │  ├─ README.md
 │  ├─ openclaw.plugin.json
 │  ├─ package.json
+│  ├─ skills/
+│  │  └─ openclaw-maia/
+│  │     └─ SKILL.md
 │  └─ src/
-└─ skill/
-   └─ openclaw-maia/
-      └─ SKILL.md
+└─ .gitignore
 ```
+
+## See also / 另见
+
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/plugin-contract.md`](docs/plugin-contract.md)
+- [`docs/mvp-flow.md`](docs/mvp-flow.md)
+- [`docs/install.md`](docs/install.md)
+- [`docs/fresh-install.md`](docs/fresh-install.md)
+- [`docs/example-workspace.md`](docs/example-workspace.md)
+- [`docs/release.md`](docs/release.md)
+- [`docs/releases/v0.1.0.md`](docs/releases/v0.1.0.md)
+- [`docs/roadmap.md`](docs/roadmap.md)
 
 ## Roadmap / 路线图
 
@@ -209,8 +238,5 @@ Short term priorities / 短期优先事项：
 - prepare a cleaner public release / 准备更适合公开发布的版本
 
 ## License / 许可
-
-TBD
-
 
 TBD
