@@ -42,6 +42,19 @@ skill 源文件位于：
 skill/openclaw-maia/
 ```
 
+Package it with:  
+打包命令：
+
+```bash
+python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py skill/openclaw-maia dist
+```
+
+Expected artifact / 产物：
+
+```text
+dist/openclaw-maia.skill
+```
+
 Use the OpenClaw skill packaging flow when you are ready to distribute it more formally.  
 当你准备更正式地分发 skill 时，使用 OpenClaw 的 skill 打包流程。
 

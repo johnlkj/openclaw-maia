@@ -112,6 +112,19 @@ The repository currently ships the skill source under:
 skill/openclaw-maia/
 ```
 
+To package it into a distributable `.skill` file:  
+要把它打包成可分发的 `.skill` 文件，可运行：
+
+```bash
+python3 /opt/homebrew/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py skill/openclaw-maia dist
+```
+
+Expected artifact / 产物：
+
+```text
+dist/openclaw-maia.skill
+```
+
 Use it as the companion MAIA skill when packaging or distributing to another OpenClaw setup.  
 在打包或分发给其他 OpenClaw 环境时，把它作为 MAIA 的配套 skill 使用。
 
@@ -162,6 +175,7 @@ See also / 另见：
 - [`docs/roadmap.md`](docs/roadmap.md)
 - [`docs/install.md`](docs/install.md)
 - [`docs/example-workspace.md`](docs/example-workspace.md)
+- [`docs/release.md`](docs/release.md)
 
 ## Repository layout / 仓库结构
 

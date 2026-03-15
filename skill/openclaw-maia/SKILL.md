@@ -1,6 +1,6 @@
 ---
 name: openclaw-maia
-description: Per-user profile and memory isolation workflow for OpenClaw agents. Use when setting up, operating, or migrating a multi-user agent workspace that should keep each user's persona preferences, long-term memory, and daily notes separated under people/<user-id>/. Also use when building or maintaining MAIA-style multi-agent, multi-account isolation layouts. / 用于 OpenClaw agent 的按用户档案与记忆隔离工作流。适用于搭建、运行或迁移需要把每个用户的人格偏好、长期记忆与日常记录分别存放到 people/<user-id>/ 下的多用户 agent workspace；也适用于构建或维护 MAIA 风格的多 Agent、多账号隔离布局。
+description: Per-user profile and memory isolation workflow for OpenClaw agents. Use when setting up, operating, or migrating a multi-user agent workspace that should keep each user's persona preferences, long-term memory, and daily notes separated under per-user folders such as people/user-id/. Also use when building or maintaining MAIA-style multi-agent, multi-account isolation layouts. / 用于 OpenClaw agent 的按用户档案与记忆隔离工作流。适用于搭建、运行或迁移需要把每个用户的人格偏好、长期记忆与日常记录分别存放到 people/user-id/ 这类用户目录下的多用户 agent workspace；也适用于构建或维护 MAIA 风格的多 Agent、多账号隔离布局。
 ---
 
 # MAIA Skill / MAIA 技能
