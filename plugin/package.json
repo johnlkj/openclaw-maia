@@ -1,15 +1,39 @@
 {
-  "name": "maia",
+  "name": "@johnlkj/openclaw-maia",
   "version": "0.1.0",
-  "private": true,
-  "description": "MAIA plugin scaffold for OpenClaw / OpenClaw 的 MAIA 插件骨架",
+  "description": "MAIA - Multi-Agent Multi-Account Isolation Architecture plugin for OpenClaw. Provides per-user profile and memory isolation inside a single agent workspace. / MAIA - 多 Agent 多账号隔离架构插件，为 OpenClaw 提供单 workspace 内的按用户档案与记忆隔离。",
   "type": "module",
   "main": "src/index.js",
   "openclaw": {
     "extensions": ["./src/index.js"]
   },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "maia",
+    "multi-agent",
+    "multi-account",
+    "isolation",
+    "memory",
+    "persona"
+  ],
+  "author": "John LJ",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnlkj/openclaw-maia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johnlkj/openclaw-maia/issues"
+  },
+  "homepage": "https://github.com/johnlkj/openclaw-maia#readme",
+  "files": [
+    "src",
+    "skills",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
   "scripts": {
-    "build": "echo 'TODO: add build step'",
     "check": "node --check src/index.js && node --check src/paths.js && node --check src/bootstrap.js && node --check src/session.js && node --check src/prompt.js && node --check src/templates/index.js"
   }
 }

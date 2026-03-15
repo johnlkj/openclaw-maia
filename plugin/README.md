@@ -11,6 +11,24 @@ Provide deterministic runtime behavior for per-user isolation.
 This plugin now bundles the companion MAIA skill under `plugin/skills/` so a fresh install is closer to a single package.  
 这个插件现在把配套 MAIA skill 一并打包在 `plugin/skills/` 下，让全新安装更接近单包分发。
 
+## Install from npm / 从 npm 安装
+
+Once published to npm, users can install MAIA directly:  
+发布到 npm 后，用户可以直接安装 MAIA：
+
+```bash
+openclaw plugins install @johnlkj/openclaw-maia
+```
+
+For now, the recommended install path is clone + link:  
+目前推荐的安装方式仍然是 clone + link：
+
+```bash
+git clone https://github.com/johnlkj/openclaw-maia.git
+cd openclaw-maia
+openclaw --profile <profile> plugins install --link ./plugin
+```
+
 ## Planned responsibilities / 计划职责
 
 - resolve the active user id from trusted metadata / 从可信元数据解析当前用户 ID

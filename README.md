@@ -107,6 +107,18 @@ cd openclaw-maia
 openclaw --profile <profile> plugins install --link ./plugin
 ```
 
+### Install from npm / 从 npm 安装 (coming soon / 即将支持)
+
+Once MAIA is published to npm, you will be able to install with:  
+MAIA 发布到 npm 后，你将可以这样安装：
+
+```bash
+openclaw --profile <profile> plugins install @johnlkj/openclaw-maia
+```
+
+This will be the simplest one-command install method.  
+这才是一句命令的最简安装方式。
+
 Then verify it loads / 然后验证插件已加载：
 
 ```bash

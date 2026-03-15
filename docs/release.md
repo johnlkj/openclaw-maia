@@ -79,6 +79,24 @@ openclaw --profile <profile> plugins install --link ./plugin
 v0.1.0
 ```
 
+## Future: npm publishing / 未来：发布到 npm
+
+Once the plugin is ready for a broader audience, consider publishing to npm:  
+当插件准备好面向更广泛用户时，可以考虑发布到 npm：
+
+```bash
+cd plugin
+npm login
+npm publish --access public
+```
+
+After publishing, users can install with:  
+发布后，用户可以这样安装：
+
+```bash
+openclaw plugins install @johnlkj/openclaw-maia
+```
+
 ## Release note themes / 发布说明建议重点
 
 Good release notes should emphasize:  
